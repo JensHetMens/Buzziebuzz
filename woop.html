@@ -26,9 +26,6 @@
                 console.log(broastTx)
             }
         }, 10)
-
-
-
             }*/
 
             const CONTRACT_ADDRESS = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi";
@@ -43,12 +40,12 @@
                 callValue:0,
                 tokenValue:10,
                 tokenId:1000001
+            }
                 
-                tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(CONTRACT_ADDRESS), "invest", options, parameter,);    
-}
+            tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(CONTRACT_ADDRESS), "invest", options, parameter,);    
 
 
-
+            }
 
     
 
