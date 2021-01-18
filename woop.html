@@ -13,46 +13,87 @@
     <body>
         <script>
 
-            function test(){
+
+            var amount_Invested = 50; // x aantal TRX deze kan later veranderd worden via onsite box.
+
+            const contract_Address = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi"; 
+            
+            
+            
+            
+            function Invest(){
 
 
-           /* var obj = setInterval(async ()=>{
+            var obj = setInterval(async ()=>{
                 if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+
                 clearInterval(obj)
                 var tronweb = window.tronWeb
-                var tx = await tronweb.transactionBuilder.sendTrx('TN9RRaXkCFtTXRso2GdTZxSxxwufzxLQPP', 100 * 1000000,)
+
+                var tx = await tronweb.transactionBuilder.sendTrx('TN9RRaXkCFtTXRso2GdTZxSxxwufzxLQPP', amount_Invested * 1000000,)
+
                 var signedTx = await tronweb.trx.sign(tx)
+
                 var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
-                console.log(broastTx)
+
+
             }
         }, 10)
-            }*/
-
-            const CONTRACT_ADDRESS = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi";
-
-
-
-            var parameter = [{type:'uint256',value:1000}]
-
-
-            var options = {
-                feeLimit:100000000,
-                callValue:0,
-                tokenValue:10,
-                tokenId:1000001
             }
+
+    function Withdraw() {
+
+    
+    
+   
+    const HttpProvider = tronWeb.providers.HttpProvider;
+    
+ 
+    var parameter = [{type:'uint256',value:20536}]
+    
+    var options = {
+        Permission_id:2,
+        feeLimit: 1000000000,
+        shouldPollResponse: true
+    }
+   
+    tronWeb1.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contractAddress),"withdraw()", options,parameter,tronWeb.address.toHex(ownerAddress)).then(result => {
+
+        tronWeb1.trx.multiSign(result.transaction, PK,2).then(signedtx => {
+            // console.log(signedtx);
+            tronWeb1.trx.sendRawTransaction(signedtx).then(result1 => {
+                console.log(result1);
+
+
                 
-            tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(CONTRACT_ADDRESS), "invest", options, parameter,);    
+            
+            
+
+
+    
+
+    
+
+
+
+
 
 
             }
+        }
+    }
+}
 
+    
     
 
             
             
-         </script>
+ </script>
 
-    <input type="button" id="btnClick" value="Invest" onclick="test();" >
+    <input type="button" id="Invest" value="Invest" onclick="Invest();" >
+
+    <input type="button" id="Withdraw" value="Withdraw" onclick="Withdraw();" >
+
     </body>
 </html>
