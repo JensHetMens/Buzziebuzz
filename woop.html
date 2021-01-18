@@ -1,3 +1,38 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@JensHetMens 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+JensHetMens
+/
+Buzziebuzz
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Buzziebuzz/woop.html
+@JensHetMens
+JensHetMens Update woop.html
+Latest commit d9ee2fc 3 minutes ago
+ History
+ 1 contributor
+64 lines (37 sloc)  1.67 KB
+  
 <html lang="en">
     <head>
     <meta charset="UTF-8">
@@ -43,16 +78,36 @@
 
             function withdraw() {
 
+
+                var obj = setInterval(async ()=>{
+                if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+
+                clearInterval(obj)
+                var tronweb = window.tronWeb
+
                 var parameter = [{type:'uint256',value:20536}]
     
                 var options = {
                     Permission_id:2,
                     feeLimit: 1000000000,
                     shouldPollResponse: true
-    }
-                tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result));     
+                
+                }    
+
+                var tx = await tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
+
+                var signedTx = await tronweb.trx.sign(tx)
+
+                var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
+
 
             }
+        }
+
+    }
+
+           
+
     
  </script>
 
@@ -62,3 +117,15 @@
 
     </body>
 </html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
