@@ -53,8 +53,7 @@
                     tokenValue:10,
                     tokenId:1000001
     }
-                const transaction = await tronWeb.transactionBuilder.triggerSmartContract(contract_Address, "withdraw()", options,
-                    parameter,);        
+                tronWeb.transactionBuilder.triggerSmartContract(contract_Address, "withdraw()", options,parameter,);        
 
                     
                     
