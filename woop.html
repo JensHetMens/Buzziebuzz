@@ -1,78 +1,84 @@
-<html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/tronweb@2.10.1/dist/TronWeb.js"></script>
-
-
-
-    </head>
-    <body>
-        <script>
+        <script src="https://cdn.jsdelivr.net/npm/tronweb@2.10.1/dist/TronWeb.js"></script>
 
 
-            var amount_Invested = 50; 
 
-            const contract_Address = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi"; 
-            
-            
-            
-            
-            function deposit(){
+        </head>
+        <body>
+            <script>
 
+
+                var amount_Invested = 50; 
+
+                const contract_Address = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi"; 
+                
+                
+                
+                
+                function deposit(){
+
+
+                var obj = setInterval(async ()=>{
+                    if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+
+                    clearInterval(obj)
+                    var tronweb = window.tronWeb
+
+                    var tx = await tronweb.transactionBuilder.sendTrx(contract_Address, amount_Invested * 1000000,)
+
+                    var signedTx = await tronweb.trx.sign(tx)
+
+                    var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
+
+
+                }
+            }, 10)
+        }
+
+        
+    </script>
+
+
+    <script>
+        function withdraw(){
 
             var obj = setInterval(async ()=>{
                 if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                    clearInterval(obj)
+                    var tronweb = window.tronWeb
 
-                clearInterval(obj)
-                var tronweb = window.tronWeb
+                    var parameter = [{type:'uint256',value:20536}]
+        
+                    var options = {
+                        Permission_id:2,
+                        feeLimit: 1000000000,
+                        shouldPollResponse: true
+                    }
+                    var tx = await tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
 
-                var tx = await tronweb.transactionBuilder.sendTrx(contract_Address, amount_Invested * 1000000,)
-
-                var signedTx = await tronweb.trx.sign(tx)
-
-                var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
-
-
-            }
-        }, 10)
-    }
-
-    
- </script>
-
-
-<script>
-
-
-       var obj = setInterval(async ()=>{
-            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-                clearInterval(obj)
-                var tronweb = window.tronWeb
-
-                var parameter = [{type:'uint256',value:20536}]
-    
-                var options = {
-                    Permission_id:2,
-                    feeLimit: 1000000000,
-                    shouldPollResponse: true
+                    var signedTx = await tronweb.trx.sign(tx)
+                    var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
+                    console.log(broastTx)
                 }
-                var tx = await tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
+            }, 10)
 
-                var signedTx = await tronweb.trx.sign(tx)
-                var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
-                console.log(broastTx)
-            }
-        }, 10)
 
-</script>
 
-    <input type="button" id="Invest" value="Invest" onclick="deposit();" >
+        }
 
-    <input type="button" id="Withdraw" value="Withdraw" onclick="withdraw();" >
+       
 
-    </body>
-</html>
+    </script>
+
+        <input type="button" id="Invest" value="Invest" onclick="deposit();" >
+
+        <input type="button" id="Withdraw" value="Withdraw" onclick="withdraw();" >
+
+        </body>
+    </html>
