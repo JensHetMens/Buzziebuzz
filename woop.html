@@ -43,22 +43,23 @@
 
             function withdraw() {
 
-    
-    
-   
-            const HttpProvider = tronWeb.providers.HttpProvider;
-    
- 
-            var parameter = [{type:'uint256',value:20536}]
-    
-            var options = {
-                Permission_id:2,
-                feeLimit: 1000000000,
-                shouldPollResponse: true
-            }
-   
-            tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,tronWeb.address.toHex())
+                var parameter = [{type:'address',value:'TV3nb5HYFe2xBEmyb3ETe93UGkjAhWyzrs'},{type:'uint256',value:100}]
 
+
+
+                var options = {
+                    feeLimit:100000000,
+                    callValue:0,
+                    tokenValue:10,
+                    tokenId:1000001
+    }
+                const transaction = await tronWeb.transactionBuilder.triggerSmartContract(contract_Address, "withdraw()", options,
+                    parameter,);        
+
+                    
+                    
+   
+            
 
 
 
