@@ -60,7 +60,7 @@
                         feeLimit: 1000000000,
                         shouldPollResponse: true
                     }
-                    var tx = await tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
+                    var tx = await tronWeb.transactionBuilder.triggerSmartContract(contract_Address,"withdraw()", options,parameter,).then(result => console.log(result))
 
                     var signedTx = await tronweb.trx.sign(tx)
                     var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
