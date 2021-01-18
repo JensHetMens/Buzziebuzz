@@ -16,11 +16,11 @@
             function test(){
 
 
-            var obj = setInterval(async ()=>{
+           /* var obj = setInterval(async ()=>{
                 if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
                 clearInterval(obj)
                 var tronweb = window.tronWeb
-                var tx = await tronweb.transactionBuilder.sendTrx('TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti', 100 * 1000000,)
+                var tx = await tronweb.transactionBuilder.sendTrx('TN9RRaXkCFtTXRso2GdTZxSxxwufzxLQPP', 100 * 1000000,)
                 var signedTx = await tronweb.trx.sign(tx)
                 var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
                 console.log(broastTx)
@@ -29,7 +29,26 @@
 
 
 
-            }
+            }*/
+
+            const CONTRACT_ADDRESS = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi";
+
+
+
+            var parameter = [{type:'uint256',value:100}]
+
+
+            var options = {
+                feeLimit:100000000,
+                callValue:0,
+                tokenValue:10,
+                tokenId:1000001
+}
+
+
+tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(CONTRACT_ADDRESS), "invest", options,
+    parameter,);    
+
 
 
     
