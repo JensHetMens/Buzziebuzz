@@ -44,7 +44,7 @@
             function withdraw() {
 
 
-
+                var obj = setInterval2(async, ()=>{
         
                 var tronweb = window.tronWeb
                 
@@ -65,6 +65,8 @@
             var signedTx2 = await tronweb.trx.sign(tx2)
 
             var broastTx2 = await tronweb.trx.sendRawTransaction(signedTx2)
+
+                }, 2)
 
 
 
