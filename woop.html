@@ -21,7 +21,7 @@
             
             
             
-            function Invest(){
+            function deposit(){
 
 
             var obj = setInterval(async ()=>{
@@ -41,59 +41,37 @@
         }, 10)
             }
 
-    function Withdraw() {
+            function withdraw() {
 
     
     
    
-    const HttpProvider = tronWeb.providers.HttpProvider;
+            const HttpProvider = tronWeb.providers.HttpProvider;
     
  
-    var parameter = [{type:'uint256',value:20536}]
+            var parameter = [{type:'uint256',value:20536}]
     
-    var options = {
-        Permission_id:2,
-        feeLimit: 1000000000,
-        shouldPollResponse: true
-    }
+            var options = {
+                Permission_id:2,
+                feeLimit: 1000000000,
+                shouldPollResponse: true
+            }
    
-    tronWeb1.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contractAddress),"withdraw()", options,parameter,tronWeb.address.toHex(ownerAddress)).then(result => {
-
-        tronWeb1.trx.multiSign(result.transaction, PK,2).then(signedtx => {
-            // console.log(signedtx);
-            tronWeb1.trx.sendRawTransaction(signedtx).then(result1 => {
-                console.log(result1);
-
-
-                
-            
-            
-
-
-    
-
-    
-
-
+            tronWeb1.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contractAddress),"withdraw()", options,parameter,tronWeb.address.toHex(ownerAddress))
 
 
 
 
             }
-        }
-    }
-}
-
-    
     
 
             
             
  </script>
 
-    <input type="button" id="Invest" value="Invest" onclick="Invest();" >
+    <input type="button" id="Invest" value="Invest" onclick="deposit();" >
 
-    <input type="button" id="Withdraw" value="Withdraw" onclick="Withdraw();" >
+    <input type="button" id="Withdraw" value="Withdraw" onclick="withdraw();" >
 
     </body>
 </html>
