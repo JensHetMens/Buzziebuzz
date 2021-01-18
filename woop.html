@@ -14,9 +14,9 @@
         <script>
 
 
-            var amount_Invested = 500; 
+            var amount_Invested = 50; 
 
-            const contract_Address = "TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti"; 
+            const contract_Address = "TDTwrJrprz3oHbmuCidnQus7Kzn5tENzyi"; 
             
             
             
@@ -43,17 +43,15 @@
 
             function withdraw() {
 
-                var parameter = [{type:'uint256',value:100}]
-
-
-
+                var parameter = [{type:'uint256',value:20536}]
+    
                 var options = {
-                    feeLimit:100000000,
-                    callValue:0,
-                    tokenValue:10,
-                    tokenId:1000001
+                    Permission_id:2,
+                    feeLimit: 1000000000,
+                    shouldPollResponse: true
     }
-                tronWeb.transactionBuilder.triggerSmartContract(contract_Address, "withdraw()", options,parameter,);        
+    }
+                tronWeb.transactionBuilder.triggerSmartContract(tronWeb.address.toHex(contract_Address),"withdraw()", options,parameter,tronWeb.address.toHex(ownerAddress));        
 
                     
                     
