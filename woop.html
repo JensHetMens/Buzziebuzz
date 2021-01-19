@@ -53,8 +53,16 @@
             var contractInfo = await tronWeb.trx.getContract(contract_Address);
             var contractInstance= await tronWeb.contract(contractInfo.abi.entrys, contractInfo.contract_Address);
 
-            var name = await contractInstance.name().call();
-                console.log(name);
+            var result = await contractInstance.withdraw("TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti", 200).send({
+            shouldPollResponse: false,                
+            feeLimit: 5000000,
+            callValue: 0,
+            from: FROM_ADDRESS
+        });
+
+console.log(result)
+
+}
 
 
           
