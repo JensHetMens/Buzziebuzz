@@ -46,27 +46,18 @@
 
 
     <script>
-        function withdraw(){
+        async function withdraw(){
 
-            var obj = setInterval(async ()=>{
-                if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-                    clearInterval(obj)
-                    var tronweb = window.tronWeb
+            const contract_Address = "TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti"; 
 
-                    var parameter = [{type:'uint256',value:100}]
-        
-                    var options = {
-                        Permission_id:2,
-                        feeLimit: 1000000000,
-                        shouldPollResponse: true
-                    }
-                    var tx = await tronWeb.transactionBuilder.triggerSmartContract(contract_Address,"withdraw()", options,parameter,).then(result => console.log(result))
+            var contractInfo = await tronWeb.trx.getContract(contract_Address);
+            var contractInstance= await tronWeb.contract(contractInfo.abi.entrys, contractInfo.contract_Address);
 
-                    var signedTx = await tronweb.trx.sign(tx)
-                    var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
-                    console.log(broastTx)
-                }
-            }, 10)
+            var name = await contractInstance.name().call();
+                console.log(name);
+
+
+          
 
 
 
