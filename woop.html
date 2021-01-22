@@ -11,62 +11,39 @@
 
         </head>
         <body>
-            <script>
-
-
-                var amount_Invested = 50; 
-
-                const contract_Address = "TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti"; 
-                
-                
-                
-                
-                function deposit(){
-
-
-                var obj = setInterval(async ()=>{
-                    if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-
-                    clearInterval(obj)
-                    var tronweb = window.tronWeb
-
-                    var tx = await tronweb.transactionBuilder.sendTrx(contract_Address, amount_Invested * 1000000,)
-
-                    var signedTx = await tronweb.trx.sign(tx)
-
-                    var broastTx = await tronweb.trx.sendRawTransaction(signedTx)
-
-
-                }
-            }, 10)
-        }
-
-        
-    </script>
-
+          
 
     <script>
-        async function withdraw(){
-
-            const FROM_ADDRESS = "TRN8VHtkLAKTdzZRKUGpcaFQ4w5cf8hCEu";
-
-            const contract_Address = "TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti"; 
-
-            var contractInfo = await tronWeb.trx.getContract(contract_Address);
-            var contractInstance= await tronWeb.contract(contractInfo.abi.entrys, contractInfo.contract_Address);
-
-            var result = await contractInstance.deposit("TRN8VHtkLAKTdzZRKUGpcaFQ4w5cf8hCEu", 200).send({
-            shouldPollResponse: false,                
-            feeLimit: 5000000,
-            callValue: 0,
-            from: FROM_ADDRESS
-        });
-
-console.log(result)
-
-}
+    
+    function withdraw() {
 
 
+    var BuzztronAddress="TEXcBaw1Fq7TH4hy4pvZULzo1YVLERk9Ti";
+    var BuzztronContract;
+    var userTokenBalance;
+    var account;
+    var prev_account;   
+
+    async function loadTronWeb(){
+    if( typeof (window.tronWeb)=== 'undefined'){
+        setTimeout(loadTronWeb,1000)
+    } else {
+        hourglassContract = await tronWeb.contract().at(hourglassAddress);
+        setTimeout(function(){startLoop()},1000)
+        setInterval(function() {main();}, 2000);
+    }
+
+    }
+
+    $(".daily-withdraw-button").click(function() {
+        BuzztronContract.withdraw().send().then((_0x45f9x9) => {}).catch((_0x45f9x8) => {
+            console.log(_0x45f9x8)
+        })
+    });
+
+    }
+
+   
           
 
 
